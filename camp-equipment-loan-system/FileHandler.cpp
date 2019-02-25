@@ -12,41 +12,48 @@ FileHandler::~FileHandler()
 }
 
 char* FileHandler::fileRead(const char* path) {
-	ifstream fileInput;
-	char *buffer = new char[100]();
-	int count = 0;
+	std::ifstream fileInput;
 
-	fileInput.open(path, ios::in);
-	if (!fileInput.is_open()) {
+	char *buffer;
+
+	fileInput.open(path, std::ifstream::binary);
+	if (fileInput) {
+
+		// get length of file
+		fileInput.seekg(0, fileInput.end);
+		int length = fileInput.tellg();
+		length = length + 1;
+		fileInput.seekg(0, fileInput.beg);
+
+		buffer = new char[length]();
+
+		fileInput.read(buffer, length);
+
+		fileInput.close();
+	}
+	else {
 		perror("Error opening file");
 
 		return NULL;
-	}
-	else {
-		while (!fileInput.eof()) {
-			fileInput.get(buffer[count]);
-			count++;
-		}
-
-		fileInput.close();
 	}
 
 	return buffer;
 }
 
 void FileHandler::fileWrite(const char* path, const char* text) {
-	ofstream fileOutput;
+	std::ofstream fileOutput;
 
-	fileOutput.open(path, ios::out);
+	fileOutput.open(path, std::ios::out);
 
-	cout << fileOutput.is_open() << endl;
-
-	if (!fileOutput.is_open()) {
-		perror("Error opening file");
-		cout << "Creating New File \"" << path << "\"..." << endl;
-	}
-	else {
+	if (fileOutput) {
 		fileOutput << text;
 		fileOutput.close();
+	}
+	else {
+		perror("Error opening file");
+		std::cout << "Creating New File \""
+			<< path
+			<< "\"..."
+			<< std::endl;
 	}
 }
