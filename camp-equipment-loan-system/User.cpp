@@ -1,64 +1,87 @@
 #include "User.h"
 
 
-char *User::getUserId()
+User::User(string _userId, string _username, string _section,
+	string _dob, string _address)
 {
-	return (this->userId);
+	userId		= _userId;
+	username	= _username;
+	section		= _section;
+	dob			= _dob;
+	address		= _address;
 }
 
-char *User::getUsername()
+string User::getUserId()
 {
-	return (this->username);
+	return userId;
 }
 
-char *User::getSection()
+string User::getUsername()
 {
-	return (this->section);
+	return username;
 }
 
-char *User::getPassword()
+string User::getSection()
 {
-	return (this->dob);
+	return section;
 }
 
-char *User::getAddress()
+string User::getPassword()
 {
-	return (this->address);
+	return dob;
 }
 
-User::User(char *const _userId, char *const _username, char *const _section,
-	char *const _dob, char *const _address)
+string User::getAddress()
 {
-	this->userId	= _userId;
-	this->username	= _username;
-	this->section	= _section;
-	this->dob		= _dob;
-	this->address	= _address;
+	return address;
 }
 
-
-User::~User()
+RoverScout::RoverScout(string _userId, string _username, string _section,
+	string _dob, string _address)
+	: User(_userId, _username, _section, _dob, _address)
 {
-	delete this->userId;
-	delete this->username;
-	delete this->section;
-	delete this->dob;
-	delete this->address;
+	MAX_ITEMS = 5;
+	items = MAX_ITEMS;
 }
 
-Scout::Scout(char *const _userId, char *const _username, char *const _section,
-	char *const _dob, char *const _address, char *const _rank)
+VentureScout::VentureScout(string _userId, string _username, string _section,
+	string _dob, string _address)
+	: User(_userId, _username, _section, _dob, _address)
+{
+	MAX_ITEMS = 3;
+	items = MAX_ITEMS;
+}
+
+Scout::Scout(string _userId, string _username, string _section,
+	string _dob, string _address, string _rank)
 	: User(_userId, _username, _section, _dob, _address) 
 {
-	this->rank = _rank;
+	rank		= _rank;
+	MAX_ITEMS	= findMaxItems(_rank);
+	items		= MAX_ITEMS;
 }
 
-Scout::~Scout()
+int Scout::findMaxItems(string _rank)
 {
-	delete this->userId;
-	delete this->username;
-	delete this->section;
-	delete this->dob;
-	delete this->address;
-	delete this->rank;
+	int max;
+	if (_rank.compare("Patrol Leader"))
+		max = 3;
+	else if (_rank.compare("Assistant Patrol Leader"))
+		max = 3;
+	else
+		max = 1;
+
+	return max;
 }
+
+string Scout::getRank()
+{
+	return rank;
+}
+
+int Scouter::findMaxItems()
+{
+	int max = 5;
+	return max;
+}
+

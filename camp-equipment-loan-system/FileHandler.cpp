@@ -11,36 +11,26 @@ FileHandler::~FileHandler()
 {
 }
 
-char* FileHandler::fileRead(const char* path) {
-	std::ifstream fileInput;
+string FileHandler::fileRead(string path) {
+	ifstream fileInput;
+	string s = "";
 
-	char *buffer;
-
-	fileInput.open(path, std::ifstream::binary);
+	fileInput.open(path, ios::in);
 	if (fileInput) {
-
-		// get length of file
-		fileInput.seekg(0, fileInput.end);
-		int length = fileInput.tellg();
-		length = length + 1;
-		fileInput.seekg(0, fileInput.beg);
-
-		buffer = new char[length]();
-
-		fileInput.read(buffer, length);
+		stringstream buffer;
+		buffer << fileInput.rdbuf();
+		s = buffer.str();
 
 		fileInput.close();
 	}
 	else {
 		perror("Error opening file");
-
-		return NULL;
 	}
 
-	return buffer;
+	return s;
 }
 
-void FileHandler::fileWrite(const char* path, const char* text) {
+void FileHandler::fileWrite(string path, string text) {
 	std::ofstream fileOutput;
 
 	fileOutput.open(path, std::ios::out);

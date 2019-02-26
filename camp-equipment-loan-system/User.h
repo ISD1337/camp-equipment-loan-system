@@ -1,52 +1,64 @@
 #pragma once
+#include <string>
+using namespace std;
 
 class User
 {
 protected:
-	char *userId;
-	char *username;
-	char *section;
-	char *dob;
-	char *address;
+	string userId;
+	string username;
+	string section;
+	string dob;
+	string address;
+
+	// number of items left that allowed to borrow
+	int items;
+	int MAX_ITEMS;
 
 public:
-	virtual char *getUserId();
-	virtual char *getUsername();
-	virtual char *getSection();
-	virtual char *getPassword();
-	virtual char *getAddress();
+	string getUserId();
+	string getUsername();
+	string getSection();
+	string getPassword();
+	string getAddress();
 
-	User(char *const _userId, char *const _username, char *const _section,
-		char *const _dob, char *const _address);
-	virtual ~User();
+	User(string _userId, string _username, string _section,
+		string _dob, string _address);
 };
 
 // RoverScout publicly inheriting User
 class RoverScout : public User
 {
-
+public:
+	RoverScout(string _userId, string _username, string _section,
+		string _dob, string _address);
 };
 
 // VentureScout publicly inheriting User
 class VentureScout : public User
 {
-
+public:
+	VentureScout(string _userId, string _username, string _section,
+		string _dob, string _address);
 };
 
 // Scout publicly inheriting User
 class Scout : public User
 {
 protected:
-	char *rank;
+	string rank;
+	virtual int findMaxItems(string _rank);
 
 public:
-	Scout(char *const _userId, char *const _username, char *const _section,
-		char *const _dob, char *const _address, char *const _rank);
-	virtual ~Scout();
+	string getRank();
+
+	Scout(string _userId, string _username, string _section,
+		string _dob, string _address, string _rank);
 };
 
 // Scouter publicly inheriting Scout
 class Scouter : public Scout
 {
-
+protected:
+	virtual int findMaxItems();
 };

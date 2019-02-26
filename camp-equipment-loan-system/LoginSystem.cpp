@@ -1,46 +1,59 @@
 #include "LoginSystem.h"
 
+bool isWordCharacter(char c) {
 
-bool match(char *const username, char *const userInput) {
+	bool flag = false;
 
-	for (int i = 0; ; i++) {
-		if ((username[i] != userInput[i]) || (username[i] == '\0') || (userInput[i] == '\0'))
-			return false;
+	if		(c >= '0' && c <= '9')
+		flag = true;
+	else if (c >= 'A' && c <= 'Z')
+		flag = true;
+	else if (c >= 'a' && c <= 'z')
+		flag = true;
+	else if (c == ' ' || c == ', ')
+		flag = true;
 
-	}
-
-	return true;
-
+	return flag;
 }
 
-char **findUserInformation(char *const userInput) {
+string *getUserInformation(string userInput) {
 	FileHandler handler;
-	char *str = handler.fileRead(USER_PATH);
+	string str = handler.fileRead(USER_PATH);
+
+	string *userInfo = new string[7]();
 	
-	char **user = new char*[20]();
+	if (!str.empty()) {
+		int len = str.length();
+		int j = 0;
 
-	int count = 0;
-	int i, j;
+		string tmp = "";
+		for (int i = 0; i < len; i++) {
 
-	do {
-		for (i = 0; i < 7; i++) {
-			if (str[count + 1] == '\n')
-				break;
-
-			for (j = 0 ; (str[count+1] != '|'); j++) {
-				user[i][j] = str[count];
+			if (isWordCharacter(str[i])) {
+				tmp = tmp + str[i];
 			}
+			else if (str[i] == '\n') {
+				if (userInfo[0].compare(userInput))
+					return userInfo;
 
+				delete userInfo;
+				userInfo = new string[7]();
+
+				j = 0;
+			}
+			else if (str[i] == '|') {
+					userInfo[j] = tmp;
+					tmp = "";
+					j++;
+			}
 		}
+	}
 
-		if (match(user[i], userInput))
-			return user;
-
-	} while (str[count] != '\0');
+	// release memory
+	delete [] userInfo;
 		
 	return NULL;
 }
 
 void login() {
-	
 }

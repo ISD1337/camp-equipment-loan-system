@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
+#include <string>
+#include "LoginSystem.h"
 
 int main() {
 

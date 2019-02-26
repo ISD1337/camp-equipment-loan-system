@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="LoginSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Equipment.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="LoginSystem.h" />
     <ClInclude Include="User.h" />

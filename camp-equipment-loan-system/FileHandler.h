@@ -2,6 +2,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <fstream>
+#include <sstream>
+using namespace std;
+
 
 class FileHandler
 {
@@ -9,8 +12,8 @@ public:
 	FileHandler();
 	~FileHandler();
 
-	char* fileRead(const char*);
-	void fileWrite(const char*, const char*);
+	string fileRead(string);
+	void fileWrite(string, string);
 };
 
 

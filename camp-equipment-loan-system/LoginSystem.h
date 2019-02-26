@@ -6,6 +6,6 @@
 
 #define USER_PATH "txt/user.txt"
 
-bool match(char *const username, char *const userInput);
+string *getUserInformation(string userInput);
 
-char **findUserInformation(char *const userInput);
+void login();
