@@ -5,11 +5,11 @@ using namespace std;
 class User
 {
 protected:
-	string userId;
-	string username;
-	string section;
-	string dob;
-	string address;
+	string _userId;
+	string _username;
+	string _section;
+	string _dob;
+	string _address;
 
 	// number of items left that allowed to borrow
 	int items;
@@ -22,38 +22,38 @@ public:
 	string getPassword();
 	string getAddress();
 
-	User(string _userId, string _username, string _section,
-		string _dob, string _address);
+	User(string userId, string username, string section,
+		string dob, string address);
 };
 
 // RoverScout publicly inheriting User
 class RoverScout : public User
 {
 public:
-	RoverScout(string _userId, string _username, string _section,
-		string _dob, string _address);
+	RoverScout(string userId, string username, string section,
+		string dob, string address);
 };
 
 // VentureScout publicly inheriting User
 class VentureScout : public User
 {
 public:
-	VentureScout(string _userId, string _username, string _section,
-		string _dob, string _address);
+	VentureScout(string userId, string username, string section,
+		string dob, string address);
 };
 
 // Scout publicly inheriting User
 class Scout : public User
 {
 protected:
-	string rank;
-	virtual int findMaxItems(string _rank);
+	string _rank;
+	virtual int findMaxItems(string rank);
 
 public:
 	string getRank();
 
-	Scout(string _userId, string _username, string _section,
-		string _dob, string _address, string _rank);
+	Scout(string userId, string username, string section,
+		string dob, string address, string rank);
 };
 
 // Scouter publicly inheriting Scout

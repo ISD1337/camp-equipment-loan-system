@@ -1,72 +1,72 @@
 #include "User.h"
 
 
-User::User(string _userId, string _username, string _section,
-	string _dob, string _address)
+User::User(string userId, string username, string section,
+	string dob, string address)
 {
-	userId		= _userId;
-	username	= _username;
-	section		= _section;
-	dob			= _dob;
-	address		= _address;
+	this->_userId		= userId;
+	this->_username	= username;
+	this->_section	= section;
+	this->_dob		= dob;
+	this->_address	= address;
 }
 
 string User::getUserId()
 {
-	return userId;
+	return this->_userId;
 }
 
 string User::getUsername()
 {
-	return username;
+	return this->_username;
 }
 
 string User::getSection()
 {
-	return section;
+	return this->_section;
 }
 
 string User::getPassword()
 {
-	return dob;
+	return this->_dob;
 }
 
 string User::getAddress()
 {
-	return address;
+	return this->_address;
 }
 
-RoverScout::RoverScout(string _userId, string _username, string _section,
-	string _dob, string _address)
-	: User(_userId, _username, _section, _dob, _address)
+RoverScout::RoverScout(string userId, string username, string section,
+	string dob, string address)
+	: User(userId, username, section, dob, address)
 {
-	MAX_ITEMS = 5;
-	items = MAX_ITEMS;
+	this->MAX_ITEMS = 5;
+	this->items = this->MAX_ITEMS;
 }
 
-VentureScout::VentureScout(string _userId, string _username, string _section,
-	string _dob, string _address)
-	: User(_userId, _username, _section, _dob, _address)
+VentureScout::VentureScout(string userId, string username, string section,
+	string dob, string address)
+	: User(userId, username, section, dob, address)
 {
-	MAX_ITEMS = 3;
-	items = MAX_ITEMS;
+	this->MAX_ITEMS = 3;
+	this->items = this->MAX_ITEMS;
 }
 
-Scout::Scout(string _userId, string _username, string _section,
-	string _dob, string _address, string _rank)
-	: User(_userId, _username, _section, _dob, _address) 
+Scout::Scout(string userId, string username, string section,
+	string dob, string address, string rank)
+	: User(userId, username, section, dob, address) 
 {
-	rank		= _rank;
-	MAX_ITEMS	= findMaxItems(_rank);
-	items		= MAX_ITEMS;
+	this->_rank		= rank;
+	this->MAX_ITEMS	= findMaxItems(rank);
+	this->items		= this->MAX_ITEMS;
 }
 
-int Scout::findMaxItems(string _rank)
+int Scout::findMaxItems(string rank)
 {
 	int max;
-	if (_rank.compare("Patrol Leader"))
+	if (rank.compare("Patrol Leader"))
 		max = 3;
-	else if (_rank.compare("Assistant Patrol Leader"))
+	else if (rank.compare("Assistant Patrol Leader"))
 		max = 3;
 	else
 		max = 1;
@@ -76,7 +76,7 @@ int Scout::findMaxItems(string _rank)
 
 string Scout::getRank()
 {
-	return rank;
+	return this->_rank;
 }
 
 int Scouter::findMaxItems()
