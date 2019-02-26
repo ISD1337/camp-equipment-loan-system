@@ -1,6 +1,6 @@
 #include "User.h"
 
-
+// User's constructor
 User::User(string userId, string username, string section,
 	string dob, string address)
 {
@@ -35,7 +35,10 @@ string User::getAddress()
 {
 	return this->_address;
 }
+// end of User
 
+
+// RoverScout's constructor
 RoverScout::RoverScout(string userId, string username, string section,
 	string dob, string address)
 	: User(userId, username, section, dob, address)
@@ -43,7 +46,10 @@ RoverScout::RoverScout(string userId, string username, string section,
 	this->MAX_ITEMS = 5;
 	this->items = this->MAX_ITEMS;
 }
+// end of RoverScout
 
+
+// VentureScout's constructor
 VentureScout::VentureScout(string userId, string username, string section,
 	string dob, string address)
 	: User(userId, username, section, dob, address)
@@ -51,7 +57,10 @@ VentureScout::VentureScout(string userId, string username, string section,
 	this->MAX_ITEMS = 3;
 	this->items = this->MAX_ITEMS;
 }
+// end of VentureScout
 
+
+// Scout's constructor
 Scout::Scout(string userId, string username, string section,
 	string dob, string address, string rank)
 	: User(userId, username, section, dob, address) 
@@ -78,10 +87,13 @@ string Scout::getRank()
 {
 	return this->_rank;
 }
+// end of Scout
+
 
 int Scouter::findMaxItems()
 {
 	int max = 5;
 	return max;
 }
+// end of Scouter
 

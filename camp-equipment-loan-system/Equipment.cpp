@@ -1,6 +1,6 @@
 #include "Equipment.h"
 
-
+// Equipment's constructor
 Equipment::Equipment(string itemId, string itemName, string brand, string itemType,
 	string dateOfPurchase, string condition, string status)
 {
@@ -57,7 +57,10 @@ void Equipment::setStatus(string status)
 {
 	this->_status = status;
 }
+// end of Equipment
 
+
+// Tent's constructor
 Tent::Tent(string itemId, string itemName, string brand, string itemType,
 	string dateOfPurchase, string condition, string status,
 	string tentSize, string tentType, string numberOfDoors, string isDoubleLayer)
@@ -89,8 +92,10 @@ string Tent::getIsDoubleLayer()
 {
 	return this->_isDoubleLayer;
 }
+// end of Tent
 
 
+// Stove's constructor
 Stove::Stove(string itemId, string itemName, string brand, string itemType,
 	string dateOfPurchase, string condition, string status,
 	string stoveType, string fuelType)
@@ -110,8 +115,10 @@ string Stove::getFuelType()
 {
 	return this->_fuelType;
 }
+// end of Stove
 
 
+// Lantern's constructor
 Lantern::Lantern(string itemId, string itemName, string brand, string itemType,
 	string dateOfPurchase, string condition, string status,
 	string lanternSize, string lanternType, string fuelType)
@@ -137,3 +144,4 @@ string Lantern::getFuelType()
 {
 	return this->_fuelType;
 }
+// end of Lantern

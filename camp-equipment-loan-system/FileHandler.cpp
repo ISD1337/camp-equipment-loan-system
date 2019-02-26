@@ -11,6 +11,7 @@ FileHandler::~FileHandler()
 {
 }
 
+// get string from .txt file
 string FileHandler::fileRead(string path) {
 	ifstream fileInput;
 	string s = "";
@@ -30,6 +31,7 @@ string FileHandler::fileRead(string path) {
 	return s;
 }
 
+// write file with string
 void FileHandler::fileWrite(string path, string text) {
 	std::ofstream fileOutput;
 
