@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
-using namespace std;
 
 
 class FileHandler

@@ -1,10 +1,11 @@
 #include "User.h"
+using namespace std;
 
 // User's constructor
 User::User(string userId, string username, string section,
 	string dob, string address)
 {
-	this->_userId		= userId;
+	this->_userId	= userId;
 	this->_username	= username;
 	this->_section	= section;
 	this->_dob		= dob;
@@ -77,7 +78,7 @@ int Scout::findMaxItems(string rank)
 		max = 3;
 	else if (rank.compare("Assistant Patrol Leader"))
 		max = 3;
-	else
+	else if (rank.compare("Member"))
 		max = 1;
 
 	return max;

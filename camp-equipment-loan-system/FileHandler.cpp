@@ -1,6 +1,5 @@
 #include "FileHandler.h"
-
-
+using namespace std;
 
 FileHandler::FileHandler()
 {
@@ -33,7 +32,7 @@ string FileHandler::fileRead(string path) {
 
 // write file with string
 void FileHandler::fileWrite(string path, string text) {
-	std::ofstream fileOutput;
+	ofstream fileOutput;
 
 	fileOutput.open(path, std::ios::out);
 

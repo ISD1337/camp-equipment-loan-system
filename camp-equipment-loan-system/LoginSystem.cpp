@@ -1,4 +1,5 @@
 #include "LoginSystem.h"
+using namespace std;
 
 // check whether c is a valid letter(include space and comma)
 bool isWordCharacter(char c) {
@@ -17,7 +18,7 @@ bool isWordCharacter(char c) {
 	return flag;
 }
 
-// get the user information with an dynamic array of string
+// get an dynamic array of string of user's information
 // if username with user's input is not found, return null pointer
 string *getUserInformation(string userInput) {
 	FileHandler handler;
