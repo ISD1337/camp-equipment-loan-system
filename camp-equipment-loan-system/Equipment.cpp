@@ -10,7 +10,7 @@ Equipment::Equipment()
 }
 
 Equipment::Equipment(string itemId, string itemName, string brand, string itemType,
-	string dateOfPurchase, string condition, string status, bool isBorrowed)
+	string dateOfPurchase, string condition, string status)
 {
 	this->_itemId			= itemId;
 	this->_itemName			= itemName;
@@ -74,11 +74,6 @@ string Equipment::getStatus()
 	return this->_status;
 }
 
-string Equipment::borrowed()
-{
-	return this->_isBorrowed;
-}
-
 int Equipment::getTotal()
 {
 	return this->totalOf;
@@ -110,14 +105,12 @@ bool Equipment::setStatus(string status)
 
 	return flag;
 }
- 
-void Equipment::setBorrowed(bool isBorrowed)
-{
-	this->_isBorrowed = isBorrowed;
-}
 
-void Equipment::operator=(const Equipment & eq)
+Equipment& Equipment::operator=(const Equipment & eq)
 {
+	if (this == &eq)
+		return *this;
+
 	this->_itemId = eq._itemId;
 	this->_itemName = eq._itemName;
 	this->_brand = eq._brand;
@@ -125,6 +118,8 @@ void Equipment::operator=(const Equipment & eq)
 	this->_dateOfPurchase = eq._dateOfPurchase;
 	this->_condition = eq._condition;
 	this->_status = eq._status;
+
+	return *this;
 }
 // end of Equipment
 
@@ -136,10 +131,10 @@ Tent::Tent()
 }
 
 Tent::Tent(string itemId, string itemName, string brand, string itemType,
-	string dateOfPurchase, string condition, string status, bool isBorrowed,
+	string dateOfPurchase, string condition, string status,
 	string tentSize, string tentType, string numberOfDoors, string isDoubleLayer, string colour)
 	: Equipment(itemId, itemName, brand, itemType,
-		dateOfPurchase, condition, status, isBorrowed)
+		dateOfPurchase, condition, status)
 {
 	this->_tentSize			= tentSize;
 	this->_tentType			= tentType;
@@ -197,12 +192,26 @@ int Tent::getTotal()
 	return totalOfTent;
 }
 
-void Tent::operator=(const Tent & t)
+Tent& Tent::operator=(const Tent & t)
 {
+	if (this == &t)
+		return *this;
+
+	this->_itemId		= t._itemId;
+	this->_itemName		= t._itemName;
+	this->_brand		= t._brand;
+	this->_itemType		= t._itemType;
+	this->_dateOfPurchase = t._dateOfPurchase;
+	this->_condition	= t._condition;
+	this->_status		= t._status;
+
 	this->_tentSize = t._tentSize;
 	this->_tentType = t._tentType;
 	this->_numberOfDoors = t._numberOfDoors;
 	this->_isDoubleLayer = t._isDoubleLayer;
+	this->_colour = t._colour;
+
+	return *this;
 }
 // end of Tent
 
@@ -214,10 +223,10 @@ Stove::Stove()
 }
 
 Stove::Stove(string itemId, string itemName, string brand, string itemType,
-	string dateOfPurchase, string condition, string status, bool isBorrowed,
+	string dateOfPurchase, string condition, string status,
 	string stoveType, string fuelType)
 	: Equipment(itemId, itemName, brand, itemType,
-		dateOfPurchase, condition, status, isBorrowed)
+		dateOfPurchase, condition, status)
 {
 	this->_stoveType	= stoveType;
 	this->_fuelType		= fuelType;
@@ -252,12 +261,25 @@ int Stove::getTotal()
 	return totalOfStove;
 }
 
-void Stove::operator=(const Stove & st)
+Stove& Stove::operator=(const Stove & st)
 {
+	if (this == &st)
+		return *this;
+
+	this->_itemId = st._itemId;
+	this->_itemName = st._itemName;
+	this->_brand = st._brand;
+	this->_itemType = st._itemType;
+	this->_dateOfPurchase = st._dateOfPurchase;
+	this->_condition = st._condition;
+	this->_status = st._status;
+
 	this->_stoveType = st._stoveType;
 	this->_fuelType = st._fuelType;
 
 	this->totalOfStove++;
+
+	return *this;
 }
 // end of Stove
 
@@ -268,9 +290,9 @@ Lantern::Lantern()
 
 }
 
-Lantern::Lantern(string itemId, string itemName, string brand, string itemType, string dateOfPurchase, string condition, string status, bool isBorrowed,
+Lantern::Lantern(string itemId, string itemName, string brand, string itemType, string dateOfPurchase, string condition, string status,
 	string lanternSize, string lanternType, string fuelType)
-	: Equipment (itemId, itemName, brand, itemType, dateOfPurchase, condition, status, isBorrowed)
+	: Equipment (itemId, itemName, brand, itemType, dateOfPurchase, condition, status)
 {
 	this->_lanternSize	= lanternSize;
 	this->_lanternType	= lanternType;
@@ -312,12 +334,25 @@ int Lantern::getTotal()
 	return totalOfLantern;
 }
 
-void Lantern::operator=(const Lantern & lan)
+Lantern& Lantern::operator=(const Lantern & lan)
 {
+	if (this == &lan)
+		return *this;
+
+	this->_itemId = lan._itemId;
+	this->_itemName = lan._itemName;
+	this->_brand = lan._brand;
+	this->_itemType = lan._itemType;
+	this->_dateOfPurchase = lan._dateOfPurchase;
+	this->_condition = lan._condition;
+	this->_status = lan._status;
+
 	this->_lanternSize = lan._lanternSize;
 	this->_lanternType = lan._lanternType;
 	this->_fuelType = lan._fuelType;
 
 	this->totalOfLantern++;
+
+	return *this;
 }
 // end of Lantern

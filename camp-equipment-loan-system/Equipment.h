@@ -12,7 +12,6 @@ protected:
 	string _dateOfPurchase;
 	string _condition;
 	string _status;
-	string _isBorrowed;
 
 	static int totalOf;
 
@@ -24,19 +23,17 @@ public:
 	string getDateOfPurchase();
 	string getCondition();
 	string getStatus();
-	string borrowed();
 	virtual int getTotal();
 
 	bool setCondition(string condition);
 	bool setStatus(string status);
-	void setBorrowed(bool isBorrow);
 
-	void operator= (const Equipment &eq);
+	virtual Equipment& operator= (const Equipment &eq);
 
 	Equipment();
 	Equipment(const Equipment &eq);
 	Equipment(string itemId, string itemName, string brand, string itemType,
-		string dateOfPurchase, string condition, string status, bool isBorrowed);
+		string dateOfPurchase, string condition, string status);
 	virtual ~Equipment();
 };
 
@@ -59,12 +56,12 @@ public:
 	string getColour();
 	virtual int getTotal();
 
-	void operator= (const Tent &t);
+	virtual Tent& operator= (const Tent &t);
 
 	Tent();
 	Tent(const Tent &t);
-	Tent(string itemdD, string itemName, string brand, string itemType,
-		string dateOfPurchase, string condition, string status, bool isBorrowed,
+	Tent(string itemdid, string itemName, string brand, string itemType,
+		string dateOfPurchase, string condition, string status,
 		string tentSize, string tentType, string numberOfDoors, string isDoubleLayer, string colour);
 	~Tent();
 	
@@ -83,12 +80,12 @@ public:
 	string getFuelType();
 	virtual int getTotal();
 
-	void operator= (const Stove &st);
+	virtual Stove& operator= (const Stove &st);
 
 	Stove();
 	Stove(const Stove &st);
 	Stove(string itemId, string itemName, string brand, string itemType,
-		string dateOfPurchase, string condition, string status, bool isBorrowed,
+		string dateOfPurchase, string condition, string status,
 		string stoveType, string fuelType);
 	~Stove();
 };
@@ -108,12 +105,12 @@ public:
 	string getFuelType();
 	virtual int getTotal();
 
-	void operator= (const Lantern &lan);
+	virtual Lantern& operator= (const Lantern &lan);
 
 	Lantern();
 	Lantern(const Lantern &lan);
 	Lantern(string itemId, string itemName, string brand, string itemType,
-		string dateOfPurchase, string condition, string status, bool isBorrowed,
+		string dateOfPurchase, string condition, string status,
 		string lanternSize, string lanternType, string fuelType);
 	~Lantern();
 

@@ -53,31 +53,32 @@ Equipment **getEquipments() {
 
 					if (c == 'T')
 					{
-						Tent tempEquip(tmp[0], tmp[1], tmp[2], tmp[3],
-							tmp[4], tmp[5], tmp[6], false,
-							tmp[7], tmp[8], tmp[9], tmp[10], tmp[11]);
-						tents[nTent] = tempEquip;
+						Tent tempObj(tmp[0], tmp[1], tmp[2], tmp[3],
+							tmp[4], tmp[5], tmp[6], 
+							tmp[7],	tmp[8], tmp[9], tmp[10], tmp[11]);
+
+						tents[nTent] = tempObj;
 
 						nTent++;
 
-						cout << tents[nTent].getBrand() << endl;
-						system("pause");
 					}
 					else if (c == 'S')
 					{
-						Stove tempEquip(tmp[0], tmp[1], tmp[2], tmp[3],
-							tmp[4], tmp[5], tmp[6], false,
+						Stove tempObj(tmp[0], tmp[1], tmp[2], tmp[3],
+							tmp[4], tmp[5], tmp[6],
 							tmp[7], tmp[8]);
-						stoves[nStove] = tempEquip;
+
+						stoves[nStove] = tempObj;
 
 						nStove++;
 					}
 					else if (c == 'L')
 					{
-						Lantern tempEquip(tmp[0], tmp[1], tmp[2], tmp[3],
-							tmp[4], tmp[5], tmp[6], false,
+						Lantern tempObj(tmp[0], tmp[1], tmp[2], tmp[3],
+							tmp[4], tmp[5], tmp[6],
 							tmp[7], tmp[8], tmp[9]);
-						lanterns[nLantern] = tempEquip;
+
+						lanterns[nLantern] = tempObj;
 
 						nLantern++;
 					}
@@ -104,10 +105,8 @@ Equipment **getEquipments() {
 void startSystem() {
 	Equipment **equipments = getEquipments();
 
-	if (equipments) {
-	}
-	else {
-		cout << "Equipment not found"
-			<< endl;
-	}
+	Tent *tents = (Tent*)equipments[0];
+	Stove *stoves = (Stove*)equipments[1];
+	Lantern *lanterns = (Lantern*)equipments[2];
+
 }
