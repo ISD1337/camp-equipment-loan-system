@@ -1,4 +1,5 @@
 #include "Equipment.h"
+#include <iostream> // delete this
 using namespace std;
 
 
@@ -31,6 +32,11 @@ Equipment::Equipment(const Equipment &eq)
 	this->_dateOfPurchase	= eq._dateOfPurchase;
 	this->_condition		= eq._condition;
 	this->_status			= eq._status;
+}
+
+Equipment::~Equipment()
+{
+	cout << "Destructor of Equipment is called " << _itemId << endl;
 }
 
 string Equipment::getItemId()
@@ -154,6 +160,11 @@ Tent::Tent(const Tent &t)
 	this->_colour			= t._colour;
 }
 
+Tent::~Tent()
+{
+	cout << "Destructor of Tent is called " << _itemId << endl;
+}
+
 int Tent::totalOfTent = 0;
 
 string Tent::getTentSize()
@@ -219,6 +230,11 @@ Stove::Stove(const Stove &st)
 	this->_fuelType		= st._fuelType;
 }
 
+Stove::~Stove()
+{
+	cout << "Destructor of Stove is called " << _itemId << endl;
+}
+
 int Stove::totalOfStove = 0;
 
 string Stove::getStoveType()
@@ -267,6 +283,11 @@ Lantern::Lantern(const Lantern &lan)
 	this->_lanternSize	= lan._lanternSize;
 	this->_lanternType	= lan._lanternType;
 	this->_fuelType		= lan._fuelType;
+}
+
+Lantern::~Lantern()
+{
+	cout << "Destructor of Lantern is called " << _itemId << endl;
 }
 
 int Lantern::totalOfLantern = 0;

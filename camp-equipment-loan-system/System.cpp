@@ -36,9 +36,7 @@ Equipment **getEquipments() {
 		Tent *tents = new Tent[cTent];
 		Stove *stoves = new Stove[cStove];
 		Lantern *lanterns = new Lantern[cLantern];
-		Equipment *equipments [] = { tents, stoves, lanterns };
-
-		cout << cTent << " " << cStove << " " << cLantern << endl;
+		Equipment *equipments[] = { tents, stoves, lanterns };
 
 		string *tmp= new string[12]();
 
@@ -59,6 +57,11 @@ Equipment **getEquipments() {
 							tmp[4], tmp[5], tmp[6], false,
 							tmp[7], tmp[8], tmp[9], tmp[10], tmp[11]);
 						tents[nTent] = tempEquip;
+
+						nTent++;
+
+						cout << tents[nTent].getBrand() << endl;
+						system("pause");
 					}
 					else if (c == 'S')
 					{
@@ -66,6 +69,8 @@ Equipment **getEquipments() {
 							tmp[4], tmp[5], tmp[6], false,
 							tmp[7], tmp[8]);
 						stoves[nStove] = tempEquip;
+
+						nStove++;
 					}
 					else if (c == 'L')
 					{
@@ -73,6 +78,8 @@ Equipment **getEquipments() {
 							tmp[4], tmp[5], tmp[6], false,
 							tmp[7], tmp[8], tmp[9]);
 						lanterns[nLantern] = tempEquip;
+
+						nLantern++;
 					}
 
 					// release and reallocate memory
@@ -98,8 +105,6 @@ void startSystem() {
 	Equipment **equipments = getEquipments();
 
 	if (equipments) {
-		cout << equipments[0]->getTotal() + equipments[1]->getTotal() + equipments[2]->getTotal();
-
 	}
 	else {
 		cout << "Equipment not found"

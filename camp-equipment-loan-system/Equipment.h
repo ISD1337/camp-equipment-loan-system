@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-using namespace std;		// delete this, screw visual studio
+using namespace std;
 
 class Equipment
 {
@@ -37,6 +37,7 @@ public:
 	Equipment(const Equipment &eq);
 	Equipment(string itemId, string itemName, string brand, string itemType,
 		string dateOfPurchase, string condition, string status, bool isBorrowed);
+	virtual ~Equipment();
 };
 
 class Tent : public Equipment
@@ -48,7 +49,7 @@ private:
 	string _isDoubleLayer;
 	string _colour;
 
-	static int totalOfTent;
+	static int totalOfTent;	
 
 public:
 	string getTentSize();
@@ -65,6 +66,7 @@ public:
 	Tent(string itemdD, string itemName, string brand, string itemType,
 		string dateOfPurchase, string condition, string status, bool isBorrowed,
 		string tentSize, string tentType, string numberOfDoors, string isDoubleLayer, string colour);
+	~Tent();
 	
 };
 
@@ -88,6 +90,7 @@ public:
 	Stove(string itemId, string itemName, string brand, string itemType,
 		string dateOfPurchase, string condition, string status, bool isBorrowed,
 		string stoveType, string fuelType);
+	~Stove();
 };
 
 class Lantern : public Equipment
@@ -112,6 +115,7 @@ public:
 	Lantern(string itemId, string itemName, string brand, string itemType,
 		string dateOfPurchase, string condition, string status, bool isBorrowed,
 		string lanternSize, string lanternType, string fuelType);
+	~Lantern();
 
 };
 

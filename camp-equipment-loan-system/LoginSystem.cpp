@@ -23,12 +23,11 @@ bool isWordCharacter(char c) {
 string *getUserInformation(string userInput) {
 	FileHandler handler;
 	string str = handler.fileRead(USER_PATH);
-
-	string *userInfo = new string[7]();
 	
 	if (!str.empty()) {
 		int len = str.length();
 		int j = 0;
+		string *userInfo = new string[7]();
 
 		string tmp = "";
 		for (int i = 0; i < len; i++) {
@@ -51,13 +50,14 @@ string *getUserInformation(string userInput) {
 					j++;
 			}
 		}
+
+		// release memory
+		for (int i = 0; i < len; i)
+			delete (userInfo + i);
+		delete[] userInfo;
 	}
 
-	// release memory
-	delete [] userInfo;
+
 		
 	return NULL;
-}
-
-void login() {
 }
