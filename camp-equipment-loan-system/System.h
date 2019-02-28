@@ -4,3 +4,8 @@
 #include "Equipment.h"
 #include "LoginSystem.h"
 #include "User.h"
+using namespace std;
+
+Equipment **getEquipments();
+
+void startSystem();

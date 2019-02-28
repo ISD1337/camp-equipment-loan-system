@@ -25,6 +25,7 @@ public:
 	string getCondition();
 	string getStatus();
 	string borrowed();
+	virtual int getTotal();
 
 	bool setCondition(string condition);
 	bool setStatus(string status);
@@ -45,6 +46,7 @@ private:
 	string _tentType;
 	string _numberOfDoors;
 	string _isDoubleLayer;
+	string _colour;
 
 	static int totalOfTent;
 
@@ -53,6 +55,8 @@ public:
 	string getTentType();
 	string getNumberOfDoors();
 	string getIsDoubleLayer();	
+	string getColour();
+	virtual int getTotal();
 
 	void operator= (const Tent &t);
 
@@ -60,7 +64,7 @@ public:
 	Tent(const Tent &t);
 	Tent(string itemdD, string itemName, string brand, string itemType,
 		string dateOfPurchase, string condition, string status, bool isBorrowed,
-		string tentSize, string tentType, string numberOfDoors, string isDoubleLayer);
+		string tentSize, string tentType, string numberOfDoors, string isDoubleLayer, string colour);
 	
 };
 
@@ -75,6 +79,7 @@ private:
 public:
 	string getStoveType();
 	string getFuelType();
+	virtual int getTotal();
 
 	void operator= (const Stove &st);
 
@@ -98,6 +103,7 @@ public:
 	string getLanternSize();
 	string getLanternType();
 	string getFuelType();
+	virtual int getTotal();
 
 	void operator= (const Lantern &lan);
 

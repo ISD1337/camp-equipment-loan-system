@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string>
 #include <thread>
-#include "LoginSystem.h"
+#include "System.h"
 
 int main() {
+	startSystem();
 
 	system("pause");
 	return 0;
