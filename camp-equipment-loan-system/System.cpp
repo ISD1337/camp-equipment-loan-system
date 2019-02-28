@@ -75,11 +75,9 @@ Equipment **getEquipments() {
 						lanterns[nLantern] = tempEquip;
 					}
 
-					tmp->clear();
+					// release and reallocate memory
 					delete[] tmp;
 					tmp = new string[12]();
-
-					cout << "Type: " << c << endl;
 
 					j = 0;
 				}
@@ -103,7 +101,8 @@ void startSystem() {
 		cout << equipments[0]->getTotal() + equipments[1]->getTotal() + equipments[2]->getTotal();
 
 	}
-	else
+	else {
 		cout << "Equipment not found"
-			 << endl;
+			<< endl;
+	}
 }
