@@ -2,10 +2,10 @@
 #include <iostream>
 #include "FileHandler.h"
 #include "Equipment.h"
-#include "LoginSystem.h"
+#include "LoginSection.h"
 #include "User.h"
 using namespace std;
 
 Equipment **getEquipments();
 
-void startSystem();
+void system();

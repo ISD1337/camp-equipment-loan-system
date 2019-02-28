@@ -102,11 +102,51 @@ Equipment **getEquipments() {
 	return NULL;
 }
 
-void startSystem() {
+void system() {
 	Equipment **equipments = getEquipments();
 
-	Tent *tents = (Tent*)equipments[0];
-	Stove *stoves = (Stove*)equipments[1];
-	Lantern *lanterns = (Lantern*)equipments[2];
+	if (equipments) {
+		Tent *tents = (Tent*)equipments[0];
+		Stove *stoves = (Stove*)equipments[1];
+		Lantern *lanterns = (Lantern*)equipments[2];
 
+		cout << "camp_equipment.txt existed, "
+			<< " "
+			<< "preparing login section..." << endl;
+
+		cout << "Done." << endl;
+		cout << endl;
+
+		string username;
+		string *user;
+
+		do {
+			cout << "Please enter the username: ";
+			cin >> username;
+
+			user = getUserInformation(username);
+			if (user)
+				break;
+
+			cout << "User "
+				<< username
+				<< " does not exited, "
+				<< "enter again" 
+				<< endl << endl;
+		} while (true);
+
+		cout << "Welcome " << username << endl;
+
+
+		// release memory
+		delete[] tents;
+		delete[] stoves;
+		delete[] lanterns;
+	}
+	else {
+		cout << "camp_equipment.txt not found:"
+			<< "please put camp_equipment.txt into root directory /txt"
+			<< endl;
+	}
+	cout << "============ Till We Meet Again ============" << endl;
 }

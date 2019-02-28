@@ -36,7 +36,6 @@ Equipment::Equipment(const Equipment &eq)
 
 Equipment::~Equipment()
 {
-	cout << "Destructor of Equipment is called " << _itemId << endl;
 }
 
 string Equipment::getItemId()
@@ -83,27 +82,23 @@ int Equipment::totalOf = 0;
 
 bool Equipment::setCondition(string condition)
 {
-	bool flag = false;
-
 	if (condition.compare("good") || condition.compare("damaged") ||
 		condition.compare("being repaired") || condition.compare("disposed"))
-		flag = true;
+		return false;
 
 	this->_condition = condition;
 
-	return flag;
+	return true;
 }
 
 bool Equipment::setStatus(string status)
 {
-	bool flag = false;
-
 	if (status.compare("out") || status.compare("in"))
-		flag = true;
+		return false;
 		
 	this->_status = status;
 
-	return flag;
+	return true;
 }
 
 Equipment& Equipment::operator=(const Equipment & eq)
@@ -157,7 +152,6 @@ Tent::Tent(const Tent &t)
 
 Tent::~Tent()
 {
-	cout << "Destructor of Tent is called " << _itemId << endl;
 }
 
 int Tent::totalOfTent = 0;
@@ -241,7 +235,6 @@ Stove::Stove(const Stove &st)
 
 Stove::~Stove()
 {
-	cout << "Destructor of Stove is called " << _itemId << endl;
 }
 
 int Stove::totalOfStove = 0;
@@ -309,7 +302,6 @@ Lantern::Lantern(const Lantern &lan)
 
 Lantern::~Lantern()
 {
-	cout << "Destructor of Lantern is called " << _itemId << endl;
 }
 
 int Lantern::totalOfLantern = 0;

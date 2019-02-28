@@ -1,4 +1,4 @@
-#include "LoginSystem.h"
+#include "LoginSection.h"
 using namespace std;
 
 // check whether c is a valid letter(include space and comma)
@@ -36,28 +36,27 @@ string *getUserInformation(string userInput) {
 				tmp = tmp + str[i];
 			}
 			else if (str[i] == '\n') {
-				if (userInfo[0].compare(userInput))
+				if (!userInfo[0].compare(userInput)) {
 					return userInfo;
+				}
 
-				delete userInfo;
+				delete[] userInfo;
 				userInfo = new string[7]();
 
 				j = 0;
+				tmp = "";
 			}
 			else if (str[i] == '|') {
 					userInfo[j] = tmp;
+
 					tmp = "";
 					j++;
 			}
 		}
 
 		// release memory
-		for (int i = 0; i < len; i)
-			delete (userInfo + i);
 		delete[] userInfo;
 	}
 
-
-		
 	return NULL;
 }
