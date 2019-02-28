@@ -38,8 +38,9 @@ Equipment **getEquipments() {
 		Lantern *lanterns = new Lantern[cLantern];
 		Equipment *equipments [] = { tents, stoves, lanterns };
 
-		string tmp[12];
-		tmp->clear();
+		cout << cTent << " " << cStove << " " << cLantern << endl;
+
+		string *tmp= new string[12]();
 
 		int j = 0;
 		int nTent, nStove, nLantern;
@@ -74,6 +75,12 @@ Equipment **getEquipments() {
 						lanterns[nLantern] = tempEquip;
 					}
 
+					tmp->clear();
+					delete[] tmp;
+					tmp = new string[12]();
+
+					cout << "Type: " << c << endl;
+
 					j = 0;
 				}
 			}
@@ -93,7 +100,8 @@ void startSystem() {
 	Equipment **equipments = getEquipments();
 
 	if (equipments) {
-		cout << equipments[0]->getTotal();
+		cout << equipments[0]->getTotal() + equipments[1]->getTotal() + equipments[2]->getTotal();
+
 	}
 	else
 		cout << "Equipment not found"
