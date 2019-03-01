@@ -23,9 +23,7 @@ bool isWordCharacter(char c) {
 	return flag;
 }
 
-// get an dynamic array of string of user's information
-// if username with user's input is not found, return null pointer
-string *getUserInformation(string userInput) {
+void getUserInformation(string *&userInfo, string userInput) {
 	FileHandler handler;
 	string str = handler.fileRead(USER_PATH);
 
@@ -42,7 +40,7 @@ string *getUserInformation(string userInput) {
 			}
 			else if (str[i] == '\n') {
 				if (!userInfo[0].compare(userInput)) {
-					return userInfo;
+					break;
 				}
 
 				delete[] userInfo;
@@ -58,15 +56,10 @@ string *getUserInformation(string userInput) {
 				j++;
 			}
 		}
-
-		// release memory
-		delete[] userInfo;
 	}
-
-	return NULL;
 }
 
-Equipment **getEquipments() {
+void getEquipments(Tent *&tents, Stove *&stoves, Lantern *&lanterns) {
 	FileHandler handler;
 	string str = handler.fileRead(EQUIPMENT_PATH);
 
@@ -96,10 +89,9 @@ Equipment **getEquipments() {
 				ieol++;
 		}
 
-		Tent *tents = new Tent[cTent];
-		Stove *stoves = new Stove[cStove];
-		Lantern *lanterns = new Lantern[cLantern];
-		Equipment *equipments[] = { tents, stoves, lanterns };
+		tents = new Tent[cTent];
+		stoves = new Stove[cStove];
+		lanterns = new Lantern[cLantern];
 
 		string *tmp = new string[12]();
 
@@ -157,11 +149,7 @@ Equipment **getEquipments() {
 				j++;
 			}
 		}
-
-		return equipments;
 	}
-
-	return NULL;
 }
 
 void updateEquipments(Equipment *const*const equipments) {
@@ -187,10 +175,9 @@ void updateEquipments(Equipment *const*const equipments) {
 	handler.fileWrite(&str, EQUIPMENT_PATH);
 }
 
-string **getLoanRecord() {
+void getLoanRecord(string **&records, int &size) {
 	FileHandler handler;
 	string str = handler.fileRead(LOANRECORD_PATH);
-	string **records = NULL;
 
 	if (!str.empty()) {
 		int count = 0;
@@ -201,15 +188,15 @@ string **getLoanRecord() {
 					count++;
 			}
 		} 
+		size = count;
 
-		records = new string*[count+1];
-		records[0] = { new string(to_string(count)) };
-		for (int i = 1; i <= count; i++) {
+		records = new string*[count];
+		for (int i = 0; i < count; i++) {
 			records[i] = new string[6]();
 		}
-
+		
 		string tmp = "";
-		int k = 1;
+		int k = 0;
 		for (int i = 0, j = 0; i < str.length(); i++) {
 
 			if (isWordCharacter(str[i])) {
@@ -225,30 +212,27 @@ string **getLoanRecord() {
 				
 			}
 			else if (str[i] == '|') {
-				records[k][j] = "a";
+				records[k][j] = tmp;
 
 				j++;
 				tmp = "";
 			}
 		}
 	}
-
-	return records;
 }
 
-void updateLoanRecord(string *const*const records) {
+void updateLoanRecord(string *const*const records, int size) {
 	FileHandler handler;
 	string str = "";
-	int size = stoi(*records[0]);
 
-	for (int i = 1; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < 6; j++) {
 			if (j)
 				str += "|";
 
 			str += records[i][j];
 		}
-		str += "\n\n";
+		str += "\n";
 	}
 
 	handler.fileWrite(&str, LOANRECORD_PATH);

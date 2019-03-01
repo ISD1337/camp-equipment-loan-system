@@ -78,7 +78,7 @@ int Equipment::getTotal()
 
 string Equipment::getInfo()
 {
-	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status + "\n\n";
+	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status + "\n";
 	return info;
 }
 
@@ -193,7 +193,7 @@ int Tent::getTotal()
 string Tent::getInfo()
 {
 	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
-		+ _tentSize + "|" + _tentType + "|" + _numberOfDoors + "|" + _isDoubleLayer + "\n\n";
+		+ _tentSize + "|" + _tentType + "|" + _numberOfDoors + "|" + _isDoubleLayer + "\n";
 	return info;
 }
 
@@ -268,7 +268,7 @@ int Stove::getTotal()
 string Stove::getInfo()
 {
 	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
-		+ _stoveType + "|" + _fuelType + "\n\n";
+		+ _stoveType + "|" + _fuelType + "\n";
 	return info;
 }
 
@@ -347,7 +347,7 @@ int Lantern::getTotal()
 string Lantern::getInfo()
 {
 	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
-		+ _lanternSize + "|" + _lanternType + "|" + _fuelType + "\n\n";
+		+ _lanternSize + "|" + _lanternType + "|" + _fuelType + "\n";
 	return info;
 }
 

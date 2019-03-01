@@ -7,12 +7,12 @@ using namespace std;	// delete this
 
 bool isWordCharacter(char c);
 
-string *getUserInformation(string userInput);
+void getUserInformation(string *&userInfo, string userInput);
 
-Equipment **getEquipments();
+void getEquipments(Tent *&tents, Stove *&stoves, Lantern *&lanterns);
 
 void updateEquipments(Equipment *const*const equipments);
 
-string **getLoanRecord();
+void getLoanRecord(string **&records, int &size);
 
-void updateLoanRecord(string *const*const records);
+void updateLoanRecord(string *const*const records, int size);
