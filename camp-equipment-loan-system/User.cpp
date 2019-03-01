@@ -50,14 +50,14 @@ int User::getNumberOfItemAllowed()
 void User::returnItem()
 {
 	int n = this->items;
-	if (n+1 < this->MAX_ITEMS)
+	if (n < this->MAX_ITEMS)
 		this->items++;
 }
 
 void User::borrowItem()
 {
 	int n = this->items;
-	if (n - 1 > 0)
+	if (n > 0)
 		this->items--;
 }
 // end of User
