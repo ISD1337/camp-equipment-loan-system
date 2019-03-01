@@ -24,6 +24,7 @@ public:
 	string getCondition();
 	string getStatus();
 	virtual int getTotal();
+	virtual string getInfo();
 
 	bool setCondition(string condition);
 	bool setStatus(string status);
@@ -55,6 +56,7 @@ public:
 	string getIsDoubleLayer();	
 	string getColour();
 	virtual int getTotal();
+	virtual string getInfo();
 
 	virtual Tent& operator= (const Tent &t);
 
@@ -79,6 +81,7 @@ public:
 	string getStoveType();
 	string getFuelType();
 	virtual int getTotal();
+	virtual string getInfo();
 
 	virtual Stove& operator= (const Stove &st);
 
@@ -104,6 +107,7 @@ public:
 	string getLanternType();
 	string getFuelType();
 	virtual int getTotal();
+	virtual string getInfo();
 
 	virtual Lantern& operator= (const Lantern &lan);
 

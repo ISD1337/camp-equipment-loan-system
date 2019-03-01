@@ -21,16 +21,16 @@
   <ItemGroup>
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="FileHandler.cpp" />
-    <ClCompile Include="LoginSection.cpp" />
+    <ClCompile Include="LoanControl.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="System.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="FileHandler.h" />
-    <ClInclude Include="System.h" />
-    <ClInclude Include="LoginSection.h" />
+    <ClInclude Include="LoanControl.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

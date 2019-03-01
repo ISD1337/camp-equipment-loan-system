@@ -27,10 +27,10 @@
     <ClCompile Include="Equipment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System.cpp">
+    <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoginSection.cpp">
+    <ClCompile Include="LoanControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="Equipment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System.h">
+    <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoginSection.h">
+    <ClInclude Include="LoanControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

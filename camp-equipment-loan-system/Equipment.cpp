@@ -78,6 +78,12 @@ int Equipment::getTotal()
 	return this->totalOf;
 }
 
+string Equipment::getInfo()
+{
+	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status + "\n\n";
+	return info;
+}
+
 int Equipment::totalOf = 0;
 
 bool Equipment::setCondition(string condition)
@@ -186,6 +192,13 @@ int Tent::getTotal()
 	return totalOfTent;
 }
 
+string Tent::getInfo()
+{
+	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
+		+ _tentSize + "|" + _tentType + "|" + _numberOfDoors + "|" + _isDoubleLayer + "\n\n";
+	return info;
+}
+
 Tent& Tent::operator=(const Tent & t)
 {
 	if (this == &t)
@@ -252,6 +265,13 @@ string Stove::getFuelType()
 int Stove::getTotal()
 {
 	return totalOfStove;
+}
+
+string Stove::getInfo()
+{
+	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
+		+ _stoveType + "|" + _fuelType + "\n\n";
+	return info;
 }
 
 Stove& Stove::operator=(const Stove & st)
@@ -324,6 +344,13 @@ string Lantern::getFuelType()
 int Lantern::getTotal()
 {
 	return totalOfLantern;
+}
+
+string Lantern::getInfo()
+{
+	string info = _itemId + "|" + _itemName + "|" + _brand + "|" + _itemType + "|" + _dateOfPurchase; +"|" + _condition + "|" + _status
+		+ _lanternSize + "|" + _lanternType + "|" + _fuelType + "\n\n";
+	return info;
 }
 
 Lantern& Lantern::operator=(const Lantern & lan)

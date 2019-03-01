@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include "System.h"
+#include "Menu.h"
 
 int main() {
-	system();
+	menu();
 
 	system("pause");
 	return 0;

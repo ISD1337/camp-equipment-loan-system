@@ -31,7 +31,7 @@ string FileHandler::fileRead(string path) {
 }
 
 // write file with string
-void FileHandler::fileWrite(string path, string text) {
+void FileHandler::fileWrite(string text, string path) {
 	ofstream fileOutput;
 
 	fileOutput.open(path, std::ios::out);
