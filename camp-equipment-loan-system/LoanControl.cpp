@@ -164,7 +164,7 @@ Equipment **getEquipments() {
 	return NULL;
 }
 
-void updateEquipments(Equipment **equipments) {
+void updateEquipments(Equipment *const*const equipments) {
 	Tent *tents = (Tent*) equipments[0];
 	Stove *stoves = (Stove*) equipments[1];
 	Lantern *lanterns = (Lantern*) equipments[2];
@@ -184,7 +184,7 @@ void updateEquipments(Equipment **equipments) {
 	}
 
 	FileHandler handler;
-	handler.fileWrite(str, EQUIPMENT_PATH);
+	handler.fileWrite(&str, EQUIPMENT_PATH);
 }
 
 string **getLoanRecord() {
@@ -236,7 +236,7 @@ string **getLoanRecord() {
 	return records;
 }
 
-void updateLoanRecord(string **records) {
+void updateLoanRecord(string *const*const records) {
 	FileHandler handler;
 	string str = "";
 	int size = stoi(*records[0]);
@@ -251,5 +251,5 @@ void updateLoanRecord(string **records) {
 		str += "\n\n";
 	}
 
-	handler.fileWrite(str, LOANRECORD_PATH);
+	handler.fileWrite(&str, LOANRECORD_PATH);
 }

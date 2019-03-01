@@ -11,8 +11,8 @@ public:
 	FileHandler();
 	~FileHandler();
 
-	string fileRead(string);
-	void fileWrite(string, string);
+	string fileRead(string path);
+	void fileWrite(string const* text, string path);
 };
 
 

@@ -11,8 +11,8 @@ string *getUserInformation(string userInput);
 
 Equipment **getEquipments();
 
-void updateEquipments(Equipment **equipments);
+void updateEquipments(Equipment *const*const equipments);
 
 string **getLoanRecord();
 
-void updateLoanRecord(string **record);
+void updateLoanRecord(string *const*const records);

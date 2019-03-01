@@ -31,13 +31,13 @@ string FileHandler::fileRead(string path) {
 }
 
 // write file with string
-void FileHandler::fileWrite(string text, string path) {
+void FileHandler::fileWrite(string const* ptext, string path) {
 	ofstream fileOutput;
 
 	fileOutput.open(path, std::ios::out);
 
 	if (fileOutput) {
-		fileOutput << text;
+		fileOutput << *ptext;
 		fileOutput.close();
 	}
 	else {
