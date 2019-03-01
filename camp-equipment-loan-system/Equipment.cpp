@@ -1,7 +1,5 @@
 #include "Equipment.h"
-#include <iostream> // delete this
 using namespace std;
-
 
 // Equipment's constructor
 Equipment::Equipment()

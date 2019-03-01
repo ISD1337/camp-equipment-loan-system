@@ -4,6 +4,7 @@
 #define EQUIPMENT_PATH "txt/camp_equipment.txt"
 #define LOANRECORD_PATH "txt/loan_record.txt"
 #define LOG "txt/log.txt"
+using namespace std;
 
 // check whether c is a valid letter(include space and comma)
 bool isWordCharacter(char c) {

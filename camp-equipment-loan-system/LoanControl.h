@@ -3,6 +3,7 @@
 #include "Equipment.h"
 #include "User.h"
 #include "FileHandler.h"
+using namespace std;	// delete this
 
 bool isWordCharacter(char c);
 
