@@ -36,6 +36,30 @@ string User::getAddress()
 {
 	return this->_address;
 }
+
+int User::getMaxItem()
+{
+	return MAX_ITEMS;
+}
+
+int User::getNumberOfItemAllowed()
+{
+	return items;
+}
+
+void User::returnItem()
+{
+	int n = this->items;
+	if (n+1 < this->MAX_ITEMS)
+		this->items++;
+}
+
+void User::borrowItem()
+{
+	int n = this->items;
+	if (n - 1 > 0)
+		this->items--;
+}
 // end of User
 
 

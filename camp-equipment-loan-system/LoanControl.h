@@ -1,5 +1,7 @@
 #pragma once
 #include <stdlib.h>
+#include <iostream>
+#include <iomanip>
 #include "Equipment.h"
 #include "User.h"
 #include "FileHandler.h"
@@ -9,10 +11,16 @@ bool isWordCharacter(char c);
 
 void getUserInformation(string *&userInfo, string userInput);
 
-void getEquipments(Tent *&tents, Stove *&stoves, Lantern *&lanterns);
+void getEquipments(Tent*& tents, Stove*& stoves, Lantern*& lanterns);
 
-void updateEquipments(Equipment *const*const equipments);
+void updateEquipments(Tent* const&tents, Stove* const&stoves, Lantern* const&lanterns);
 
 void getLoanRecord(string **&records, int &size);
 
 void updateLoanRecord(string *const*const records, int size);
+
+void performDisplayLoanAvailableItem(Tent * const & tents, Stove * const & stoves, Lantern * const & lanterns);
+
+void performBorrowEquipment(User* const& user, Tent* const& tents, Stove* const& stoves, Lantern* const& lanterns, string*& records, int &size);
+
+void performDisplayUserBorrowedItem(User* const& user, Tent* const& tents, Stove* const& stoves, Lantern* const& lanterns, string*& records, int &size);

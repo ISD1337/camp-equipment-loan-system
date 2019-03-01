@@ -21,6 +21,11 @@ public:
 	string getSection();
 	string getPassword();
 	string getAddress();
+	int getMaxItem();
+	int getNumberOfItemAllowed();
+
+	void returnItem();
+	void borrowItem();
 
 	User(string userId, string username, string section,
 		string dob, string address);

@@ -59,7 +59,7 @@ void getUserInformation(string *&userInfo, string userInput) {
 	}
 }
 
-void getEquipments(Tent *&tents, Stove *&stoves, Lantern *&lanterns) {
+void getEquipments(Tent*& tents, Stove*& stoves, Lantern*& lanterns) {
 	FileHandler handler;
 	string str = handler.fileRead(EQUIPMENT_PATH);
 
@@ -152,11 +152,7 @@ void getEquipments(Tent *&tents, Stove *&stoves, Lantern *&lanterns) {
 	}
 }
 
-void updateEquipments(Equipment *const*const equipments) {
-	Tent *tents = (Tent*) equipments[0];
-	Stove *stoves = (Stove*) equipments[1];
-	Lantern *lanterns = (Lantern*) equipments[2];
-
+void updateEquipments(Tent* const&tents, Stove* const&stoves, Lantern* const&lanterns) {
 	string str = "";
 
 	for (int i = 0; i < tents->getTotal(); i++) {
@@ -236,4 +232,139 @@ void updateLoanRecord(string *const*const records, int size) {
 	}
 
 	handler.fileWrite(&str, LOANRECORD_PATH);
+}
+
+void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves, Lantern * const & lanterns) {
+
+	string statusOut = "out";
+	int count = 0;
+
+	// Table of Tents
+	cout << endl;
+	cout << "TENTS" << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(15) << left << "ITEM ID"
+		<< setw(25) << left << "ITEM NAME"
+		<< setw(15) << left << "BRAND"
+
+		<< setw(20) << left << "TENT SIZE"
+		<< setw(20) << left << "TENT TYPE"
+		<< setw(20) << left << "NUMBER OF DOORS"
+		<< setw(20) << left << "IS DOUBLE LAYER"
+		<< setw(20) << left << "COLOUR"
+		<< endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+	for (int i = 0; i < tents->getTotal(); i++) {
+		if (!statusOut.compare(tents[i].getStatus()))
+			continue;
+
+		cout << setw(15) << left << tents[i].getItemId()
+			<< setw(25) << left << tents[i].getItemName()
+			<< setw(15) << left << tents[i].getBrand()
+
+			<< setw(20) << left << tents[i].getTentSize()
+			<< setw(20) << left << tents[i].getTentType()
+			<< setw(20) << left << tents[i].getNumberOfDoors()
+			<< setw(20) << left << tents[i].getIsDoubleLayer()
+			<< setw(20) << left << tents[i].getColour()
+			<< endl;
+
+		count++;
+	}
+
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(140) << right << "Available Left: "
+		<< setw(5) << right << count << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+		<< endl;
+
+	count = 0;
+	// end of Tents'
+
+
+	// Table of Stoves
+	cout << endl;
+	cout << "STOVES" << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(15) << left << "ITEM ID"
+		<< setw(25) << left << "ITEM NAME"
+		<< setw(15) << left << "BRAND"
+
+		<< setw(20) << left << "STOVE SIZE"
+		<< setw(20) << left << "FUEL TYPE"
+		<< endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+	for (int i = 0; i < stoves->getTotal(); i++) {
+		if (!statusOut.compare(stoves[i].getStatus()))
+			continue;
+
+		cout << setw(15) << left << stoves[i].getItemId()
+			<< setw(25) << left << stoves[i].getItemName()
+			<< setw(15) << left << stoves[i].getBrand()
+
+			<< setw(20) << left << stoves[i].getStoveType()
+			<< setw(20) << left << stoves[i].getFuelType()
+			<< endl;
+
+		count++;
+	}
+
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(140) << right << "Available Left: "
+		<< setw(5) << right << count << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+	<< endl;
+
+	count = 0;
+	// end of Stoves'
+
+
+	// table of Lanterns
+	cout << endl;
+	cout << "LANTERNS" << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(15) << left << "ITEM ID"
+		<< setw(25) << left << "ITEM NAME"
+		<< setw(15) << left << "BRAND"
+
+		<< setw(20) << left << "LANTERN SIZE"
+		<< setw(20) << left << "LANTERN TYPE"
+		<< setw(20) << left << "FUEL TYPE"
+		<< endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+
+	for (int i = 0; i < lanterns->getTotal(); i++) {
+		if (!statusOut.compare(lanterns[i].getStatus()))
+			continue;
+
+		cout << setw(15) << left << lanterns[i].getItemId()
+			<< setw(25) << left << lanterns[i].getItemName()
+			<< setw(15) << left << lanterns[i].getBrand()
+
+			<< setw(20) << left << lanterns[i].getLanternSize()
+			<< setw(20) << left << lanterns[i].getLanternType()
+			<< setw(20) << left << lanterns[i].getFuelType()
+			<< endl;
+
+		count++;
+	}
+
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << setw(140) << right << "Available Left: "
+		<< setw(5) << right << count << endl;
+	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl
+	<< endl;
+
+	count = 0;
+	// end of lanterns'
+}
+
+void performBorrowEquipment(User* const& user, Tent* const& tents, Stove* const& stoves, Lantern* const& lanterns, string*& records, int &size) {
+
+}
+
+void performDisplayUserBorrowedItem(User * const & user, Tent * const & tents, Stove * const & stoves, Lantern * const & lanterns, string *& records, int & size) {
+
 }

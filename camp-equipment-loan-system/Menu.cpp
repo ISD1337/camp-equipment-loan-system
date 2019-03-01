@@ -2,12 +2,10 @@
 using namespace std;
 
 void menu() {
+	Tent *tents;
+	Stove *stoves;
+	Lantern *lanterns;
+	getEquipments(tents, stoves, lanterns);
 
-	string **records;
-	int size;
-	getLoanRecord(records, size);
-
-	records[0][0] = "1";
-
-	updateLoanRecord(records, size);
+	performDisplayLoanAvailableItem(tents, stoves, lanterns);
 }
