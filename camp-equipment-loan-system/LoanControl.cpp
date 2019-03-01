@@ -158,7 +158,6 @@ Equipment **getEquipments() {
 		}
 
 		return equipments;
-
 	}
 
 	return NULL;
@@ -182,6 +181,9 @@ void updateEquipments(Equipment **equipments) {
 	for (int i = 0; i < lanterns->getTotal(); i++) {
 		str += lanterns[i].getInfo();
 	}
+
+	FileHandler handler;
+	handler.fileWrite(str, EQUIPMENT_PATH);
 }
 
 string **getLoanRecord() {
