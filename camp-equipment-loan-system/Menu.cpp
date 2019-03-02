@@ -22,6 +22,14 @@ void menu() {
 		quit = executeMenu(selectMenu(user), user, tents, stoves, lanterns, records, size);
 	} while (quit);
 
+	delete[] tents;
+	delete[] stoves;
+	delete[] lanterns;
+	for (int i = 0; i < size; i++) {
+		delete[] records[i];
+	}
+	delete[] records;
+
 	cout << endl;
 	cout << "Till We Meet Again." << endl;
 }
