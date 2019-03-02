@@ -476,7 +476,7 @@ void performBorrowEquipment(User* const& user, Tent* const& tents, Stove* const&
 					tmpRecords[size][2] = item->getItemName();
 					tmpRecords[size][3] = "NA";
 					tmpRecords[size][4] = user->getUsername();
-					tmpRecords[size][5] = item->getStatus();
+					tmpRecords[size][5] = "out";
 					size = size + 1;
 
 					if (!records)
@@ -524,7 +524,7 @@ string **getUserCurrentBorrowRecord(User* const& user, string *const*const recor
 				// check whether the item has been returned
 				for (int j = i + 1; j < size && !returned; j++) {
 					if ((!records[j][4].compare(username)) && (!records[j][1].compare(itemId))) {		// if the record is match is related to the user and the item
-						if (!records[j][5].compare("in")) {	// if record has showed the item has already been returned
+						if (!records[j][5].compare("returned")) {	// if record has showed the item has already been returned
 							returned = true;
 						}
 					}
@@ -662,7 +662,7 @@ void performReturnItem(User* const& user, Tent* const& tents, Stove* const& stov
 				tmpRecords[size][2] = item->getItemName();
 				tmpRecords[size][3] = date;
 				tmpRecords[size][4] = user->getUsername();
-				tmpRecords[size][5] = item->getStatus();
+				tmpRecords[size][5] = "returned";
 				size = size + 1;
 
 				if (!records)
