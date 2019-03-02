@@ -10,7 +10,7 @@ FileHandler::~FileHandler()
 {
 }
 
-// get string from .txt file
+// Get string from .txt file
 string FileHandler::fileRead(string path) {
 	ifstream fileInput;
 	string s = "";
@@ -30,7 +30,7 @@ string FileHandler::fileRead(string path) {
 	return s;
 }
 
-// write file with string
+// Write file stream with string
 void FileHandler::fileWrite(string const* ptext, string path) {
 	ofstream fileOutput;
 
