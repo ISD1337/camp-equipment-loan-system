@@ -66,4 +66,6 @@ class Scouter : public Scout
 {
 protected:
 	virtual int findMaxItems();
+public:
+	using Scout::Scout;		// inheriting constructor from Class Scout
 };

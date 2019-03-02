@@ -23,7 +23,7 @@ bool isWordCharacter(char c) {
 	return flag;
 }
 
-void getUserInformation(string *&userInfo, string userInput) {
+void getUserInformation(User *&user, string userInput) {
 	FileHandler handler;
 	string str = handler.fileRead(USER_PATH);
 
@@ -39,7 +39,13 @@ void getUserInformation(string *&userInfo, string userInput) {
 				tmp = tmp + str[i];
 			}
 			else if (str[i] == '\n') {
+				userInfo[j] = tmp;
+
 				if (!userInfo[0].compare(userInput)) {
+
+					convertUserInformation(user, userInfo);
+
+					delete[] userInfo;
 					break;
 				}
 
@@ -56,6 +62,24 @@ void getUserInformation(string *&userInfo, string userInput) {
 				j++;
 			}
 		}
+	}
+}
+
+void convertUserInformation(User *&user, string *const userInfo) {
+	
+	string rank = userInfo[0].substr(0, 3);
+	
+	if (!rank.compare("VEN")) {
+		user = new VentureScout(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4]);
+	} 
+	else if (!rank.compare("ROV")) {
+		user = new RoverScout(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4]);
+	}
+	else if (!rank.compare("SCT")) {
+		user = new Scout(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
+	}
+	else if (!rank.compare("SCM")) {
+		user = new Scouter(userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]);
 	}
 }
 
@@ -154,17 +178,16 @@ void getEquipments(Tent*& tents, Stove*& stoves, Lantern*& lanterns) {
 
 void updateEquipments(Tent* const&tents, Stove* const&stoves, Lantern* const&lanterns) {
 	string str = "";
-
 	for (int i = 0; i < tents->getTotal(); i++) {
-		str += tents[i].getInfo();
+		str += tents[i].getInfo() + "\n";
 	}
 
 	for (int i = 0; i < stoves->getTotal(); i++) {
-		str += stoves[i].getInfo();
+		str += stoves[i].getInfo() + "\n";
 	}
 
 	for (int i = 0; i < lanterns->getTotal(); i++) {
-		str += lanterns[i].getInfo();
+		str += lanterns[i].getInfo() + "\n";
 	}
 
 	FileHandler handler;
@@ -236,7 +259,7 @@ void updateLoanRecord(string *const*const records, int size) {
 
 void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves, Lantern * const & lanterns) {
 
-	string statusOut = "out";
+	string statusIn = "in";
 	int count = 0;
 
 	// Table of Tents
@@ -256,7 +279,11 @@ void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 	for (int i = 0; i < tents->getTotal(); i++) {
-		if (!statusOut.compare(tents[i].getStatus()))
+		string condtion = tents[i].getCondition();
+		if (condtion.compare("good"))
+			continue;
+
+		if (statusIn.compare(tents[i].getStatus()))
 			continue;
 
 		cout << setw(15) << left << tents[i].getItemId()
@@ -297,7 +324,11 @@ void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 	for (int i = 0; i < stoves->getTotal(); i++) {
-		if (!statusOut.compare(stoves[i].getStatus()))
+		string condtion = tents[i].getCondition();
+		if (condtion.compare("good"))
+			continue;
+
+		if (statusIn.compare(stoves[i].getStatus()))
 			continue;
 
 		cout << setw(15) << left << stoves[i].getItemId()
@@ -336,7 +367,11 @@ void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 
 	for (int i = 0; i < lanterns->getTotal(); i++) {
-		if (!statusOut.compare(lanterns[i].getStatus()))
+		string condtion = tents[i].getCondition();
+		if (condtion.compare("good"))
+			continue;
+
+		if (statusIn.compare(lanterns[i].getStatus()))
 			continue;
 
 		cout << setw(15) << left << lanterns[i].getItemId()
@@ -361,8 +396,93 @@ void performDisplayLoanAvailableItem(Tent * const &tents, Stove * const & stoves
 	// end of lanterns'
 }
 
-void performBorrowEquipment(User* const& user, Tent* const& tents, Stove* const& stoves, Lantern* const& lanterns, string*& records, int &size) {
+void performBorrowEquipment(User* const& user, Tent* const& tents, Stove* const& stoves, Lantern* const& lanterns, string**& records, int &size) {
 
+	string username = user->getUsername();
+	bool isExceed = (!user->getNumberOfItemAllowed());		// check whether the number of rank allowed item == 0
+	string input_itemId;
+
+	while (!isExceed) {
+		cout << "Please enter the item's Id that you wanted to borrow:  ";
+		cin >> input_itemId;
+
+		bool found = false;
+		Equipment *item = NULL;
+		int total;
+
+		total = tents->getTotal();
+		for (int j = 0; (j < total) && !found; j++) {
+			if (!input_itemId.compare(tents[j].getItemId())) {
+				item = &tents[j];
+				found = true;
+			}
+		}
+
+		total = stoves->getTotal();
+		for (int j = 0; (j < total) && !found; j++) {
+			if (!input_itemId.compare(stoves[j].getItemId())) {
+				item = &stoves[j];
+				found = true;
+			}
+		}
+
+		total = lanterns->getTotal();
+		for (int j = 0; (j < total) && !found; j++) {
+			if (!input_itemId.compare(lanterns[j].getItemId())) {
+				item = &lanterns[j];
+				found = true;
+			}
+		}
+
+
+		if (found) {
+			if (item->getStatus().compare("out")) {		// the item is not borrowed yet
+				if (!item->getCondition().compare("good")) {		// the item has a good condition
+
+					item->setStatus("out");
+					user->borrowItem();
+
+					string **tmpRecords = new string*[size + 1];
+					for (int i = 0; i < size; i++) {
+						tmpRecords[i] = records[i];
+					}
+
+					tmpRecords[size] = new string[7];
+					tmpRecords[size][0] = "loan date";
+					tmpRecords[size][1] = item->getItemId();
+					tmpRecords[size][2] = item->getItemName();
+					tmpRecords[size][3] = "NA";
+					tmpRecords[size][4] = user->getUsername();
+					tmpRecords[size][5] = item->getStatus();
+					size = size + 1;
+
+					if (!records)
+						delete[] records;
+					records = tmpRecords;
+
+					updateLoanRecord(records, size);
+					updateEquipments(tents, stoves, lanterns);
+
+					cout << "item " << input_itemId << " has been successfully borrowed." << endl;
+
+					return;
+				}
+				else {		// bad condition
+					cout << "item " << input_itemId << " is currently not available." << endl;
+				}
+			}
+			else {		// status == out
+				cout << "item " << input_itemId << " is currently borrowed by others." << endl;
+			}
+
+		}
+		else {	// 404 item not found
+			cout << "item " << input_itemId << " not found." << endl;
+		}
+
+	} // end of while
+
+	cout << "User " << username << " has exceed the limit of allowed item borrowing." << endl;
 }
 
 void performDisplayUserBorrowedItem(User * const & user, Tent * const & tents, Stove * const & stoves, Lantern * const & lanterns, string *& records, int & size) {
